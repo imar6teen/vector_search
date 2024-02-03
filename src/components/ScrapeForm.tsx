@@ -22,15 +22,16 @@ function ScrapeForm() {
   const { toast } = useToast();
 
   useEffect(() => {
-    console.log(state);
-    toast({
-      title: "Message",
-      description:
-        state.event === "success"
-          ? "URL has been scraped"
-          : "URL failed to scrape",
-      variant: state.event === "success" ? "default" : "destructive",
-    });
+    if (state.message !== "" && state.event !== "") {
+      toast({
+        title: "Message",
+        description:
+          state.event === "success"
+            ? "URL has been scraped"
+            : "URL failed to scrape",
+        variant: state.event === "success" ? "default" : "destructive",
+      });
+    }
   }, [state, toast]);
 
   return (
