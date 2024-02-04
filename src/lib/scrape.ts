@@ -1,3 +1,4 @@
+"use server";
 import { ZenRows } from "zenrows";
 
 export default async function scrape(url: string) {

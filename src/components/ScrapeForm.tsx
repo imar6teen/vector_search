@@ -3,10 +3,9 @@ import action from "@/app/scrape/action";
 import React, { useEffect } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
-import LoadingScrapeButton from "./LoadingScrapeButton";
+import LoadingButton from "./LoadingButton";
 import { useFormState } from "react-dom";
 import { useToast } from "./ui/use-toast";
-import { ToastAction } from "./ui/toast";
 
 type InitState = {
   message: string;
@@ -46,7 +45,7 @@ function ScrapeForm() {
             </span>
           )}
         </div>
-        <LoadingScrapeButton />
+        <LoadingButton name="Scrape" />
       </div>
     </form>
   );
