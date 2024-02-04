@@ -10,6 +10,5 @@ const scrapesSchema = new mongoose.Schema<IScrapes>({
   vectorize: { type: [Number], required: true },
 });
 
-const Scrapes = mongoose.model<IScrapes>("Scrapes", scrapesSchema);
-
-export default Scrapes;
+export default mongoose.models.Scrapes ||
+  mongoose.model<IScrapes>("Scrapes", scrapesSchema);
