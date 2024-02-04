@@ -10,6 +10,7 @@ const schema = z.object({
   url: z.string().url("Invalid URL using http:// or https://"),
 });
 
+// TODO CLEAN CODE
 export default async function action(_: any, formData: FormData) {
   try {
     await dbConnect();
