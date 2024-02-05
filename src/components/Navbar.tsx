@@ -1,10 +1,13 @@
 import Link from "next/link";
 import SSSvg from "@/assets/ss.svg";
 import Image from "next/image";
-import { Button } from "./ui/button";
 import DarkModeButton from "./DarkModeButton";
+import SignInButton from "./SignInButton";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 
-function Navbar() {
+async function Navbar() {
+  const session = await getServerSession(authOptions);
   return (
     <nav className="m-auto flex w-[80%] items-center justify-between">
       <ul className="flex items-center gap-x-10">
@@ -33,9 +36,7 @@ function Navbar() {
           <DarkModeButton />
         </li>
         <li>
-          <Button asChild>
-            <Link href={"/login"}>Login</Link>
-          </Button>
+          <SignInButton session={session} />
         </li>
       </ul>
     </nav>
