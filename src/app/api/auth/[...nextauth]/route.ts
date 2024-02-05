@@ -1,3 +1,4 @@
+import { insertUser, isUserExist } from "@/lib/dbMethod";
 import NextAuth from "next-auth";
 import type { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
@@ -5,11 +6,22 @@ import GoogleProvider from "next-auth/providers/google";
 export const authOptions = {
   providers: [
     GoogleProvider({
-      clientId:
-        "452494448835-dif79k8o98ffccb9s62a53vkubn7uns6.apps.googleusercontent.com",
-      clientSecret: "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",
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_SECRET as string,
     }),
   ],
+  callbacks: {
+    async signIn({ user: { email, image, name } }) {
+      if (await isUserExist(email as string)) return true;
+      const isInserted = await insertUser({
+        email: email as string,
+        image: image as string,
+        name: name as string,
+      });
+      if (isInserted) return true;
+      return false;
+    },
+  },
 } satisfies NextAuthOptions;
 
 const handler = NextAuth(authOptions);
