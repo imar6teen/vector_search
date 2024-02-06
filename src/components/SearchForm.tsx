@@ -1,5 +1,5 @@
 "use client";
-import action from "@/app/(protected)/search/action";
+import action from "@/app/search/action";
 import { useFormState } from "react-dom";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";

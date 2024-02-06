@@ -1,5 +1,5 @@
 "use client";
-import action from "@/app/(protected)/scrape/action";
+import action from "@/app/scrape/action";
 import React, { useEffect } from "react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
