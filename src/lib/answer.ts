@@ -19,8 +19,13 @@ const answer = cache(async (context: string, question: string) => {
           "I will give you some context and I want you to answer based on that as short as possible. And please if you do not know, just say don't know. If you uncertain which answer you want to give, just answer it",
       },
       {
+        role: "assistant",
+        message:
+          "I will answer based on the context only. If the context irrelevant with the question, I will answer 'The context is irrelevant or there is no context match with question, please scrape'",
+      },
+      {
         role: "user",
-        message: context,
+        message: `Based on this context : ${context}`,
       },
     ],
     text: question,
