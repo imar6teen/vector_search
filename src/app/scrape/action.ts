@@ -1,5 +1,4 @@
 "use server";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import dbConnect from "@/lib/dbConnect";
 import scrape from "@/lib/scrape";
 import vectorEmbed from "@/lib/vectorEmbed";
@@ -7,6 +6,7 @@ import Scrape, { IScrapes } from "@/models/Scrapes";
 import { getServerSession } from "next-auth";
 import { ZodError, z } from "zod";
 import mongoose from "mongoose";
+import authOptions from "../api/auth/[...nextauth]/authOptions";
 
 const schema = z.object({
   url: z.string().url("Invalid URL using http:// or https://"),

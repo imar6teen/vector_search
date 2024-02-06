@@ -1,6 +1,9 @@
 import SearchForm from "@/components/SearchForm";
 import TypeHeader from "@/components/TypeHeader";
 
+// if force-static, then client code like on SignInButton.tsx will not work (change the "login" to "logout" will not work)
+// export const dynamic = "force-static";
+
 function page() {
   return (
     <main className="m-auto w-[80%]">

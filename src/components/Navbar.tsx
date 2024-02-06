@@ -4,7 +4,7 @@ import Image from "next/image";
 import DarkModeButton from "./DarkModeButton";
 import SignInButton from "./SignInButton";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import authOptions from "@/app/api/auth/[...nextauth]/authOptions";
 
 async function Navbar() {
   const session = await getServerSession(authOptions);

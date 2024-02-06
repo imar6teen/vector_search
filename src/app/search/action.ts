@@ -1,5 +1,4 @@
 "use server";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import answer from "@/lib/answer";
 import dbConnect from "@/lib/dbConnect";
 import vectorEmbed from "@/lib/vectorEmbed";
@@ -9,6 +8,7 @@ import mongoose from "mongoose";
 
 import { ZodError, z } from "zod";
 import { fullTextSearch, getRelatedScrapes } from "@/lib/dbMethod";
+import authOptions from "../api/auth/[...nextauth]/authOptions";
 
 const schema = z.object({
   ask: z
