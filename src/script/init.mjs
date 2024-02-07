@@ -10,7 +10,7 @@ import fs from "fs";
 
     file.on("finish", () => {
       file.close();
-      console.log("Download Completed");
+      console.log("Download Completed to", file.path);
     });
   });
 })();
