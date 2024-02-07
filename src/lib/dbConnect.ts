@@ -32,7 +32,7 @@ async function dbConnect() {
       authMechanism: "MONGODB-X509",
       authSource: "$external",
       connectTimeoutMS: 10000,
-      tlsCertificateKeyFile: getKey(),
+      tlsCertificateKeyFile: process.env.MONGO_CERT,
     };
 
     cached.promise = mongoose
