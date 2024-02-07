@@ -11,7 +11,7 @@ import path from "path";
   });
 
   const file = fs.createWriteStream(
-    path.join(process.cwd(), process.env.MONGO_CERT),
+    path.join(__dirname, process.env.MONGO_CERT),
   );
 
   https.get(getMetadata.downloadUrl, function (response) {
@@ -21,7 +21,7 @@ import path from "path";
       file.close();
       console.log(
         "downloaded to ",
-        path.join(process.cwd(), process.env.MONGO_CERT),
+        path.join(__dirname, process.env.MONGO_CERT),
       );
     });
   });
