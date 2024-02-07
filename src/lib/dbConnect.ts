@@ -4,7 +4,7 @@ import path from "path";
 function getKey() {
   if (process.env.NODE_ENV === "development")
     return path.join(process.cwd(), process.env.MONGO_CERT as string);
-  return path.join(process.cwd(), ".next", process.env.MONGO_CERT as string);
+  return process.env.BLOB_KEY_MONGO_URL;
 }
 
 declare global {
