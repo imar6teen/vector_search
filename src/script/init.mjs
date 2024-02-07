@@ -5,7 +5,7 @@ import fs from "fs";
 import path from "path";
 
 (async () => {
-  console.log(fs.readdirSync(process.cwd()));
+  console.log(fs.readdirSync(path.resolve(process.cwd())));
   const file = fs.createWriteStream(
     path.resolve(process.cwd(), process.env.MONGO_CERT),
   );
@@ -16,6 +16,6 @@ import path from "path";
       file.close();
       console.log("Download Completed to", file.path);
     });
+    console.log(fs.readdirSync(path.resolve(process.cwd())));
   });
-  console.log(fs.readdirSync(process.cwd()));
 })();
