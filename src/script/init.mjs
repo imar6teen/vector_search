@@ -15,7 +15,7 @@ import path from "path";
     file.on("finish", () => {
       file.close();
       console.log("Download Completed to", file.path);
+      console.log(fs.readdirSync(path.resolve(process.cwd())));
     });
-    console.log(fs.readdirSync(path.resolve(process.cwd())));
   });
 })();
