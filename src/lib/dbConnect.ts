@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 import path from "path";
+import downloadKey from "./downloadKey";
 
-function getKey() {
+async function getKey() {
+  if (process.env.NODE_ENV === "development")
+    return path.resolve(process.cwd(), process.env.MONGO_CERT as string);
+  await downloadKey();
   return path.resolve(process.cwd(), process.env.MONGO_CERT as string);
 }
 
@@ -30,7 +34,7 @@ async function dbConnect() {
       authMechanism: "MONGODB-X509",
       authSource: "$external",
       connectTimeoutMS: 10000,
-      tlsCertificateKeyFile: getKey(),
+      tlsCertificateKeyFile: await getKey(),
     };
 
     cached.promise = mongoose
