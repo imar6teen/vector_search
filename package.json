@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "ssl:setup": "node ./src/script/init.mjs"
+    "postbuild": "node ./src/script/init.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.5",
