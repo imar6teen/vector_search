@@ -6,7 +6,7 @@ async function getKey() {
   if (process.env.NODE_ENV === "development")
     return path.resolve(process.cwd(), process.env.MONGO_CERT as string);
   await downloadKey();
-  return path.resolve(process.cwd(), process.env.MONGO_CERT as string);
+  return path.resolve("/tmp", process.env.MONGO_CERT as string);
 }
 
 declare global {
