@@ -1,11 +1,23 @@
 import mongoose from "mongoose";
-import path from "path";
-import downloadKey from "./downloadKey";
 
-async function getKey() {
+function mongoOptions(): mongoose.ConnectOptions {
   if (process.env.NODE_ENV === "development")
-    return path.resolve(process.cwd(), process.env.MONGO_CERT as string);
-  return await downloadKey();
+    return {
+      bufferCommands: false,
+      tls: true,
+      tlsAllowInvalidCertificates: true,
+      dbName: process.env.MONGO_DBNAME,
+      authMechanism: "MONGODB-X509",
+      authSource: "$external",
+      connectTimeoutMS: 10000,
+      tlsCertificateKeyFile: process.env.MONGO_CERT,
+    };
+
+  return {
+    user: process.env.MONGO_PROD_NAME,
+    pass: process.env.MONGO_PROD_PASS,
+    dbName: process.env.MONGO_DBNAME,
+  };
 }
 
 declare global {
@@ -25,16 +37,7 @@ async function dbConnect() {
   if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
-    const opts: mongoose.ConnectOptions = {
-      bufferCommands: false,
-      tls: true,
-      tlsAllowInvalidCertificates: true,
-      dbName: process.env.MONGO_DBNAME,
-      authMechanism: "MONGODB-X509",
-      authSource: "$external",
-      connectTimeoutMS: 10000,
-      tlsCertificateKeyFile: await getKey(),
-    };
+    const opts: mongoose.ConnectOptions = mongoOptions();
 
     cached.promise = mongoose
       .connect(MONGO_URL as string, opts)
