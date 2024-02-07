@@ -14,4 +14,5 @@ import fs from "fs";
       console.log("Download Completed to", file.path);
     });
   });
+  console.log(fs.readdirSync(process.cwd()));
 })();
