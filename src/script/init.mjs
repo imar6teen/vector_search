@@ -6,15 +6,12 @@ import fs from "fs";
 import path from "path";
 
 (async () => {
-  const dir = path.join(process.cwd(), "src", "keys");
-  if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-
   const getMetadata = await head(process.env.BLOB_KEY_MONGO_URL, {
     token: process.env.BLOB_READ_WRITE_TOKEN,
   });
 
   const file = fs.createWriteStream(
-    path.join(process.cwd(), "src", "keys", process.env.MONGO_CERT),
+    path.join(process.cwd(), process.env.MONGO_CERT),
   );
 
   https.get(getMetadata.downloadUrl, function (response) {

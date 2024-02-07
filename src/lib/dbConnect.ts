@@ -28,8 +28,6 @@ async function dbConnect() {
       connectTimeoutMS: 10000,
       tlsCertificateKeyFile: path.join(
         process.cwd(),
-        "src",
-        "keys",
         process.env.MONGO_CERT as string,
       ),
     };
