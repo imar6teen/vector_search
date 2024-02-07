@@ -2,9 +2,7 @@ import mongoose from "mongoose";
 import path from "path";
 
 function getKey() {
-  if (process.env.NODE_ENV === "development")
-    return path.join(process.cwd(), process.env.MONGO_CERT as string);
-  return process.env.BLOB_KEY_MONGO_URL;
+  return path.resolve(process.cwd(), process.env.MONGO_CERT as string);
 }
 
 declare global {
@@ -32,7 +30,7 @@ async function dbConnect() {
       authMechanism: "MONGODB-X509",
       authSource: "$external",
       connectTimeoutMS: 10000,
-      tlsCertificateKeyFile: process.env.MONGO_CERT,
+      tlsCertificateKeyFile: getKey(),
     };
 
     cached.promise = mongoose
