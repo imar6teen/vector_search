@@ -8,6 +8,7 @@ import authOptions from "@/app/api/auth/[...nextauth]/authOptions";
 
 async function Navbar() {
   const session = await getServerSession(authOptions);
+  console.log(session);
   return (
     <nav className="m-auto flex w-[80%] items-center justify-between">
       <ul className="flex items-center gap-x-10">
