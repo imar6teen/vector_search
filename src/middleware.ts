@@ -11,6 +11,10 @@ export default withAuth(function middleware(req) {}, {
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async authorized({ req }) {
+      // token can be achieved from authorized parameter, code below "const token"
+      // is used because for some reason next auth change the name of cookie in production
+      // this lead to token = null from authorized parameter.
+      // I've been debugging for this thing whole day :)
       const token = await getToken({
         req,
         secret: process.env.NEXTAUTH_SECRET,
@@ -19,7 +23,6 @@ export default withAuth(function middleware(req) {}, {
             ? "__Secure-next-auth.session-token"
             : "next-auth.session-token",
       });
-      console.log(token);
       if (
         (req.nextUrl.pathname.startsWith("/scrape") ||
           req.nextUrl.pathname.startsWith("/search")) &&
