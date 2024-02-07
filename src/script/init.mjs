@@ -19,7 +19,10 @@ import path from "path";
 
     file.on("finish", () => {
       file.close();
-      console.log("downloaded");
+      console.log(
+        "downloaded to ",
+        path.join(process.cwd(), process.env.MONGO_CERT),
+      );
     });
   });
 })();
