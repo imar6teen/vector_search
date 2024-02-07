@@ -10,6 +10,7 @@ const nextConfig = {
   //     };
   //     return config;
   //   },
+  webpack5: false,
 };
 
 export default nextConfig;
