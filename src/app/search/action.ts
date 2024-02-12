@@ -48,10 +48,16 @@ export default async function action(_: any, formData: FormData) {
 
     if (vector.status !== 200) throw new Error(vector.data);
 
-    const result = await getRelatedScrapes(
+    let result = await getRelatedScrapes(
       vector.data.openai.items[0].embedding,
       userId,
     );
+
+    if (result.length === 0)
+      result.push({
+        score: 0,
+        text: "Context is not exist",
+      });
 
     if (result[0].score < 0.7) result[0].text = "Context is not exist";
 
